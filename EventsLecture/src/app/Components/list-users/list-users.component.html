@@ -1,0 +1,5 @@
+<p>Add user</p>
+<app-user-form (UserCreated)="AddUser($event)"></app-user-form>
+<p>All Users</p>
+<br>
+<app-single-user *ngFor="let u of listUsers" [person]="u"></app-single-user>

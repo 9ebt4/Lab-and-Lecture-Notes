@@ -1,0 +1,28 @@
+<h1>Filter</h1>
+<form (ngSubmit)="FilterTask()"> 
+    <input type="text" [(ngModel)]="filter" name="task">
+    <button type="submit">Filter</button>
+</form>
+<h1>Tasks</h1>
+<form (ngSubmit)="AddTask()"> 
+    <input type="text" [(ngModel)]="newTask.task" name="task">
+    <button type="submit">Add Task</button>
+</form>
+<div *ngIf="AllComplete()">
+    <div *ngFor="let t of filteredList" >
+        <p *ngIf="t.completed==false">{{t.task}}</p>
+        <s *ngIf="t.completed==true">{{t.task}}</s>
+        <button *ngIf="t.completed==false" (click)="completeTask(t)">Complete task</button>
+        <button *ngIf="t.completed==true" (click)="completeTask(t)">Undo</button>
+        <button (click)="DeleteTask(t)">X</button>
+        <button (click)="ToggleDisplay()">Edit</button>
+        <form *ngIf="display"> 
+            <input type="text" [(ngModel)]="t.task" name="edit">
+            <button type="submit">Edit</button>
+        </form>
+    </div>
+</div>
+<h1 *ngIf="!AllComplete()">Congrats you are done... for now...</h1>
+
+
+
